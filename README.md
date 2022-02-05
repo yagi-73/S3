@@ -11,5 +11,5 @@ phase2 の応用課題について実装したアプリケーションです。
 
 # 各機能詳細
 
-各機能詳細については、[カリキュラム（復習編・ポートフォリオ基礎編）](https://web-camp.online/lesson/curriculums/250/chapters/115)を確認してください。
+各機能詳細については、[カリキュラム（復習編・ポートフォリオ基礎編）](https://web-camp.online/lesson/curriculums/250/chapters/115)を確認してください。  
 応用課題 3,4,6 が該当内容です。 (5 は不要)
