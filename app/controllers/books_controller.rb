@@ -8,7 +8,7 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.all
+    @books = Book.all.includes(:favorited_users).sort_by{|book| [book.favorites.week.length, book.favorites.length]}.reverse
     @book = Book.new
   end
 
