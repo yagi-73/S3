@@ -1,15 +1,7 @@
-# Bookers2_phase2_Debug
-
-phase2 の応用課題について実装したアプリケーションです。
-以下の機能について、バグを仕込んでいるので、デバッグしてください。
-
-# デバッグ内容
-
-- 非同期いいね
-- 非同期コメント
-- フォロー機能
-
-# 各機能詳細
-
-各機能詳細については、[カリキュラム（復習編・ポートフォリオ基礎編）](https://web-camp.online/lesson/curriculums/250/chapters/115)を確認してください。  
-応用課題 3,4,6 が該当内容です。 (5 は不要)
+#一週間の表し方
+今日： Time.zone.now.all_day
+昨日：1.day.ago.all_day
+1週間前：1.week.ago.all_day
+1か月前：1.month.ago.all_day
+1週間分: 1.week.ago.beginning_of_day..Time.zone.now.end_of_day
+https://yatta47.hateblo.jp/entry/2018/02/24/221927
