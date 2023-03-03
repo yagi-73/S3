@@ -1,11 +1,24 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:edit, :update]
+  # before_action :judgment_reciprocal_followings
 
   def show
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
+    unless @user == current_user
+      current_user.rooms.each do |current_user_room|
+        if @user.rooms.exists?(current_user_room.id)
+          @isRoom = true
+          @room = @user.rooms.find(current_user_room.id)
+        end
+      end
+    end
+    # unless @isRoom
+    #   @room_user = RoomUser.new
+    #   @room = Room.new
+    # end
   end
 
   def index
@@ -36,4 +49,12 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user)
     end
   end
+  
+  # private
+  # def judgment_reciprocal_followings
+  #   user = User.find(params[:id])
+  #   unless current_user.following?(user) && user.following?(current_user)
+  #     redirect_to 
+  #   end
+  # end
 end

@@ -1,0 +1,16 @@
+<div class="w-75 mx-auto">
+  <h1><%= @user.name %>さんとのチャット</h1>
+  <% @messages.each do |message| %>
+    <% unless message.user == current_user %>
+      <p class="w-50"><%= image_tag @user.get_profile_image(50, 50) %> <%= message.body %></p>
+    <% else %>
+      <p class= "w-50 ml-auto text-right text-success" ><%= message.body %></p>
+    <% end %>
+  <% end %>
+  <%= render 'layouts/errors', obj: @message %>
+  <%= form_with model: @message_new do |f| %>
+    <%= f.text_field :body %>
+    <%= f.hidden_field :room_id, value: @room.id %>
+    <% f.submit %>
+  <% end %>
+</div>
