@@ -9,6 +9,53 @@
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
       <%= render 'books/index',books: @books %>
+      <h3>7日分の投稿数</h3>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <% 6.downto(1) do |n| %>
+              <th><%= n %>日前</th>
+            <% end %>
+            <th>今日</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <% @this_week_book_counts.each do |count| %>
+              <td><%= count %></td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+      <canvas id="bookChart"></canvas>
     </div>
   </div>
 </div>
+
+<script>
+  const ctx = document.getElementById('bookChart');
+  
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'],
+      datasets: [{
+        label: '投稿した本の数',
+        data: <%= @this_week_book_counts %>,
+        borderColor: 'blue',
+      }]
+    },
+    options: {
+      plugins: {
+        title: {
+          display: true,
+          text: '７日間の本の投稿数'
+        }
+      },
+      y: {
+        min: 0,
+        max: 10,
+      },
+    },
+  });
+</script>
