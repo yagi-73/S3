@@ -24,6 +24,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def search
+    @user = User.find(params[:user_id])
+    @books = @user.books
+    @book = Book.new
+    if params[:created_at].empty?
+      @book_count = "日付を選択してください"#①
+    else
+      @book_count = @books.where('created_at LIKE ? ', "#{params[:created_at]}%").size
+    end
+  end
+
   private
 
   def user_params
