@@ -6,10 +6,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
-    this_week_books = @books.created_this_week
     @this_week_book_counts = []
     6.downto(0) do |n|
-       @this_week_book_counts.push(this_week_books.where(created_at: n.day.ago.all_day).count)
+       @this_week_book_counts.push(@books.where(created_at: n.day.ago.all_day).count)
     end
   end
 
