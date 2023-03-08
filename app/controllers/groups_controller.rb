@@ -44,6 +44,18 @@ class GroupsController < ApplicationController
     redirect_to groups_path
   end
   
+  def new_mail
+    @group = Group.find(params[:group_id])
+  end
+  
+  def send_mail
+    @group = Group.find(params[:group_id])
+    group_users = @group.users
+    @title = params[:title]
+    @content = params[:content]
+    NoticeMailer.send_mail(@title, @content, group_users).deliver
+  end
+  
   private
   def group_params
     params.require(:group).permit(:name, :introduction, :image)
