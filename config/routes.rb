@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'tag_searches/result'
   devise_for :users
 
   root :to =>"homes#top"
@@ -14,5 +15,5 @@ Rails.application.routes.draw do
   	get 'followers' => 'relationships#followers', as: 'followers'
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  get '/search', to: 'searches#search'
+  get 'search' => 'books#search_result', as: 'tag_searches'
 end
