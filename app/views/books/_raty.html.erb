@@ -1,0 +1,15 @@
+<script>
+  $(document).on('turbolinks:load', function() {
+    $('#star-rate<%= book.id%>').empty();
+    let elem = document.querySelector('#star-rate<%= book.id%>');
+    let opt = {
+      size     : 36,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      readOnly: true,
+      score: <%= book.star %>,
+      half: false,
+    };
+    raty(elem,opt);
+  });
+</script>

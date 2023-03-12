@@ -1,4 +1,4 @@
-<%= form_with model:book,local:true do |f| %>
+<%= form_with model: book do |f| %>
   <div class="form-group">
     <%= f.label :title %>
     <%= f.text_field :title, class: 'form-control book_title' %>
@@ -7,7 +7,33 @@
     <%= f.label :opinion %>
     <%= f.text_area :body, class: 'form-control book_body' %>
   </div>
+  <div class="form-group d-flex">
+    <%= f.label :rate, class: "mr-1" %>
+    <div id="star"></div>
+  </div>
   <div class="form-group">
     <%= f.submit class: 'btn btn-success' %>
   </div>
 <% end %>
+
+<script>
+  $(document).off('turbolinks:load');
+  $(document).on('turbolinks:load', function() {
+    $('#star').empty();
+    let elem = document.querySelector('#star');
+    let opt = {
+      size     : 36,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+
+      <% if book.id.nil? %>
+        scoreName: 'book[star]',
+      <% else %>
+        readOnly: true,
+        score: <%= book.star %>,
+      <% end %>
+      half: false,
+    };
+    raty(elem,opt);
+  });
+</script>
