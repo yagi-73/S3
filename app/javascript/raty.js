@@ -559,8 +559,16 @@ class Raty {
     let score = parseInt(icon.alt || icon.getAttribute('data-alt'), 10);
 
     if (this.opt.half) {
+      // const size = this._getWidth();
+      // const percent = parseFloat((evt.pageX - icon.offsetLeft) / size);
       const size = this._getWidth();
-      const percent = parseFloat((evt.pageX - icon.offsetLeft) / size);
+      const rect = icon.getBoundingClientRect();
+      const elemleft = rect.left + window.pageXOffset;
+      const percent = parseFloat((evt.pageX - elemleft) / size);
+      //console.log(size);
+      //console.log(evt.pageX);
+      //console.log(elemleft);
+      //console.log(percent);
 
       score = score - 1 + percent;
     }

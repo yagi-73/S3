@@ -20,19 +20,20 @@
   $(document).off('turbolinks:load');
   $(document).on('turbolinks:load', function() {
     $('#star').empty();
-    let elem = document.querySelector('#star');
+    let elem = document.getElementById('star');
     let opt = {
       size     : 36,
       starOff:  '<%= asset_path('star-off.png') %>',
       starOn : '<%= asset_path('star-on.png') %>',
+      starHalf : '<%= asset_path('star-half.png') %>',
 
       <% if book.id.nil? %>
         scoreName: 'book[star]',
+        half: true,
       <% else %>
         readOnly: true,
         score: <%= book.star %>,
       <% end %>
-      half: false,
     };
     raty(elem,opt);
   });
